@@ -183,3 +183,50 @@
   .sw-resumen dd { font-size: 1.6rem; }
   .sw-panel { padding: 1rem; }
 }
+
+/* Estados de carga y error (DashboardConectado) */
+.sw-estado {
+  max-width: 32rem;
+  margin: 4rem auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+}
+.sw-estado h2 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+.sw-estado p { color: var(--tinta-suave); }
+.sw-estado--error { border-color: var(--agotado); }
+.sw-estado--error h2 { color: var(--agotado); }
+.sw-estado__boton {
+  margin-top: 1.25rem;
+  padding: 0.5rem 1.25rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--marca);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sw-estado__boton:hover { filter: brightness(1.1); }
+.sw-cargando {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--linea);
+  border-top-color: var(--marca);
+  border-radius: 50%;
+  animation: sw-giro 0.9s linear infinite;
+}
+@keyframes sw-giro { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .sw-cargando { animation-duration: 3s; }
+}
+
+/* Celulares muy angostos: una sola columna en el resumen */
+@media (max-width: 360px) {
+  .sw-resumen { grid-template-columns: minmax(0, 1fr); }
+  .sw-resumen__dato { border-left: 0; }
+  .sw-resumen__dato:nth-child(n + 2) { border-top: 1px solid var(--linea); }
+}
