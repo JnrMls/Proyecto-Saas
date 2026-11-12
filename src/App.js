@@ -1,3 +1,4 @@
+import MovimientosInventario from './Pages/MovimientosInventario';
 import React, { useState } from 'react';
 import Products from './Pages/Products';
 import './App.css'
@@ -27,6 +28,16 @@ const features = [
 
 function App() {
   const [vista, setVista] = useState('inicio');
+
+  // Estado compartido entre Productos, Movimientos y el futuro Dashboard
+  const [products, setProducts] = useState([
+    { id: 1, name: 'Arroz', category: 'Alimentos', quantity: 25, price: 4000 },
+    { id: 2, name: 'Teclado Mecánico', category: 'Tecnología', quantity: 15, price: 120000 },
+    { id: 3, name: 'Mouse Inalámbrico', category: 'Tecnología', quantity: 4, price: 55000 },
+  ]);
+
+  const [movimientos, setMovimientos] = useState([]);
+  
   return (
     <div className="app">
       <header className="navbar">
@@ -40,13 +51,23 @@ function App() {
           <a href="#features" onClick={() => setVista('inicio')}>Funcionalidades</a>
           <a href="#how-it-works" onClick={() => setVista('inicio')}>¿Cómo funciona?</a>
           <a href="#productos" onClick={(e) => { e.preventDefault(); setVista('productos'); }}>Productos</a>
+          <a href="#movimientos" onClick={(e) => { e.preventDefault(); setVista('movimientos'); }}>Movimientos</a>
         </nav>
 
         <a href="#features" className="nav-button">
           Comenzar
         </a>
       </header>
-      {vista === 'productos' ? <Products /> : (
+      {vista === 'productos' ? (
+        <Products products={products} setProducts={setProducts} />
+      ) : vista === 'movimientos' ? (
+        <MovimientosInventario
+          productos={products}
+          onActualizarStock={setProducts}
+          movimientos={movimientos}
+          setMovimientos={setMovimientos}
+        />
+      ) : (
       <main>
         <section className="hero" id="home">
           <div className="hero-content">
