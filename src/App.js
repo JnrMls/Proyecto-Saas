@@ -58,7 +58,16 @@ function App() {
           Comenzar
         </a>
       </header>
-      {vista === 'productos' ? <Products /> : vista === 'movimientos' ? <MovimientosInventario /> : (
+      {vista === 'productos' ? (
+        <Products products={products} setProducts={setProducts} />
+      ) : vista === 'movimientos' ? (
+        <MovimientosInventario
+          productos={products}
+          onActualizarStock={setProducts}
+          movimientos={movimientos}
+          setMovimientos={setMovimientos}
+        />
+      ) : (
       <main>
         <section className="hero" id="home">
           <div className="hero-content">
