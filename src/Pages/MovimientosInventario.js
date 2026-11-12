@@ -1,24 +1,11 @@
 import React, { useState } from 'react';
 
-// Datos iniciales de prueba
-const PRODUCTOS_INICIALES = [
-    { id: 1, nombre: 'Teclado Mecánico', stock: 15 },
-    { id: 2, nombre: 'Mouse Inalámbrico', stock: 30 },
-    { id: 3, nombre: 'Monitor 24"', stock: 8 },
-];
-
-export default function MovimientosInventario({ productos = PRODUCTOS_INICIALES, onActualizarStock }) {
-    const [listaProductos, setListaProductos] = useState(productos);
-    const [movimientos, setMovimientos] = useState([
-        {
-            id: 1,
-            productoNombre: 'Teclado Mecánico',
-            tipo: 'Entrada',
-            cantidad: 5,
-            fecha: new Date().toLocaleString(),
-            motivo: 'Compra a proveedor',
-        },
-    ]);
+export default function MovimientosInventario({
+    productos = [],
+    onActualizarStock,
+    movimientos = [],
+    setMovimientos,
+}) {
 
     const [productoId, setProductoId] = useState('');
     const [tipoMovimiento, setTipoMovimiento] = useState('Entrada');
@@ -35,7 +22,7 @@ export default function MovimientosInventario({ productos = PRODUCTOS_INICIALES,
             return;
         }
 
-        const prodSeleccionado = listaProductos.find((p) => p.id === Number(productoId));
+        const prodSeleccionado = productos.find((p) => String(p.id) === String(productoId));
         if (!prodSeleccionado) {
             setError('Producto no encontrado.');
             return;
@@ -44,23 +31,20 @@ export default function MovimientosInventario({ productos = PRODUCTOS_INICIALES,
         const cantidadNum = Number(cantidad);
 
         // Validar existencias en caso de salida
-        if (tipoMovimiento === 'Salida' && prodSeleccionado.stock < cantidadNum) {
-            setError(`Stock insuficiente. Disponible actual: ${prodSeleccionado.stock}`);
+        if (tipoMovimiento === 'Salida' && Number(prodSeleccionado.quantity) < cantidadNum) {
+            setError(`Stock insuficiente. Disponible actual: ${prodSeleccionado.quantity}`);
             return;
         }
 
         // Actualizar el stock del producto
         const nuevoStock =
             tipoMovimiento === 'Entrada'
-                ? prodSeleccionado.stock + cantidadNum
-                : prodSeleccionado.stock - cantidadNum;
+                ? Number(prodSeleccionado.quantity) + cantidadNum
+                : Number(prodSeleccionado.quantity) - cantidadNum;
 
-        const productosActualizados = listaProductos.map((prod) =>
-            prod.id === Number(productoId) ? { ...prod, stock: nuevoStock } : prod
+        const productosActualizados = productos.map((prod) =>
+            String(prod.id) === String(productoId) ? { ...prod, quantity: nuevoStock } : prod
         );
-
-        setListaProductos(productosActualizados);
-
         if (onActualizarStock) {
             onActualizarStock(productosActualizados);
         }

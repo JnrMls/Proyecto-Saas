@@ -4,10 +4,8 @@ import ProductForm from '../Components/Products/ProductForm';
 import ProductList from '../Components/Products/ProductList';
 import '../Styles/Products.css';
 
-function Products() {
-  const [products, setProducts] = useState([]);
+function Products({ products, setProducts }) {
   const [showForm, setShowForm] = useState(false);
-
   const handleAddProduct = (newProduct) => {
     setProducts((currentProducts) => [
       ...currentProducts,
