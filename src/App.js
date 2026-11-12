@@ -1,4 +1,5 @@
 import MovimientosInventario from './Pages/MovimientosInventario';
+import Dashboard from './Pages/Dashboard';
 import React, { useState } from 'react';
 import Products from './Pages/Products';
 import './App.css'
@@ -52,6 +53,7 @@ function App() {
           <a href="#how-it-works" onClick={() => setVista('inicio')}>¿Cómo funciona?</a>
           <a href="#productos" onClick={(e) => { e.preventDefault(); setVista('productos'); }}>Productos</a>
           <a href="#movimientos" onClick={(e) => { e.preventDefault(); setVista('movimientos'); }}>Movimientos</a>
+          <a href="#dashboard" onClick={(e) => { e.preventDefault(); setVista('dashboard'); }}>Dashboard</a>
         </nav>
 
         <a href="#features" className="nav-button">
@@ -67,6 +69,8 @@ function App() {
           movimientos={movimientos}
           setMovimientos={setMovimientos}
         />
+      ) : vista === 'dashboard' ? (
+        <Dashboard products={products} movimientos={movimientos} />
       ) : (
       <main>
         <section className="hero" id="home">
