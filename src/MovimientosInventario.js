@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Datos iniciales de prueba (se reemplazan dinámicamente cuando Persona 2 defina la lista global)
+// Datos iniciales de prueba
 const PRODUCTOS_INICIALES = [
   { id: 1, nombre: 'Teclado Mecánico', stock: 15 },
   { id: 2, nombre: 'Mouse Inalámbrico', stock: 30 },
@@ -29,3 +29,21 @@ export default function MovimientosInventario({ productos = PRODUCTOS_INICIALES,
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
+
+    if (!productoId || !cantidad || Number(cantidad) <= 0) {
+        setError('Por favor selecciona un producto y una cantidad válida.');
+        return;
+        }
+
+        const prodSeleccionado = listaProductos.find((p) => p.id === Number(productoId));
+        if (!prodSeleccionado) {
+        setError('Producto no encontrado.');
+        return;
+        }
+
+        const cantidadNum = Number(cantidad);
+
+        // Validar existencias en caso de salida
+        if (tipoMovimiento === 'Salida' && prodSeleccionado.stock < cantidadNum) {
+        setError(`Stock insuficiente. Disponible actual: ${prodSeleccionado.stock}`);
+        return;
