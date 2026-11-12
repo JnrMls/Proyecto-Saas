@@ -85,11 +85,11 @@ export default function MovimientosInventario({
                             style={{ width: '100%', padding: '8px', borderRadius: '4px' }}
                         >
                             <option value="">-- Seleccionar producto --</option>
-                            {listaProductos.map((p) => (
+                            {productos.map((p) => (
                                 <option key={p.id} value={p.id}>
-                                    {p.nombre} (Stock actual: {p.stock})
+                                    {p.name} (Stock actual: {p.quantity})
                                 </option>
-                            ))}
+                                ))}
                         </select>
                     </div>
 
