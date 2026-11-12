@@ -10,7 +10,7 @@
 * **Docente:** Kelly Villa
 * **Equipo de Desarrollo:**
   * Bladimir Mieles
-  * Dana Villarreal
+  * Danna Villarreal
   * Luisa Mejía
   * Yordin Morris
 
