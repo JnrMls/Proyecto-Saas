@@ -31,36 +31,36 @@ export default function MovimientosInventario({ productos = PRODUCTOS_INICIALES,
     setError('');
 
     if (!productoId || !cantidad || Number(cantidad) <= 0) {
-            setError('Por favor selecciona un producto y una cantidad válida.');
-            return;
-        }
+      setError('Por favor selecciona un producto y una cantidad válida.');
+      return;
+    }
 
-        const prodSeleccionado = listaProductos.find((p) => p.id === Number(productoId));
-        if (!prodSeleccionado) {
-            setError('Producto no encontrado.');
-            return;
-        }
+    const prodSeleccionado = listaProductos.find((p) => p.id === Number(productoId));
+    if (!prodSeleccionado) {
+      setError('Producto no encontrado.');
+      return;
+    }
 
-        const cantidadNum = Number(cantidad);
+    const cantidadNum = Number(cantidad);
 
-        // Validar existencias en caso de salida
-        if (tipoMovimiento === 'Salida' && prodSeleccionado.stock < cantidadNum) {
-            setError(`Stock insuficiente. Disponible actual: ${prodSeleccionado.stock}`);
-            return;
-        }
+    // Validar existencias en caso de salida
+    if (tipoMovimiento === 'Salida' && prodSeleccionado.stock < cantidadNum) {
+      setError(`Stock insuficiente. Disponible actual: ${prodSeleccionado.stock}`);
+      return;
+    }
 
     // Actualizar el stock del producto
-        const nuevoStock =
-            tipoMovimiento === 'Entrada'
-                ? prodSeleccionado.stock + cantidadNum
-                : prodSeleccionado.stock - cantidadNum;
+    const nuevoStock =
+      tipoMovimiento === 'Entrada'
+        ? prodSeleccionado.stock + cantidadNum
+        : prodSeleccionado.stock - cantidadNum;
 
-        const productosActualizados = listaProductos.map((prod) =>
-        prod.id === Number(productoId) ? { ...prod, stock: nuevoStock } : prod
-        );
+    const productosActualizados = listaProductos.map((prod) =>
+      prod.id === Number(productoId) ? { ...prod, stock: nuevoStock } : prod
+    );
 
-        setListaProductos(productosActualizados);
+    setListaProductos(productosActualizados);
 
-        if (onActualizarStock) {
-        onActualizarStock(productosActualizados);
-        }
+    if (onActualizarStock) {
+      onActualizarStock(productosActualizados);
+    }
