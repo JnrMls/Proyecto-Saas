@@ -247,7 +247,23 @@ function App() {
             de las funcionalidades con nuestro equipo.
           </p>
         </section>
-      </main>
+
+      <section className="cta-section" id="contacto">
+        <span className="section-label">CONTÁCTANOS</span>
+
+        <h2>¿Tienes dudas sobre nuestros planes?</h2>
+
+        <p>
+          Estamos aquí para ayudarte. Contáctanos para conocer
+          más sobre StockWise y encontrar el plan ideal
+          para tu negocio.
+        </p>
+
+        <a href="mailto:soporte@stockwise.example" className="cta-button">
+          Contáctanos por correo
+        </a>
+      </section>
+    </main>
       )}
       <footer className="footer">
         <span className="footer-brand">StockWise</span>
