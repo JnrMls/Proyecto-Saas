@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# StockWise — Gestión Inteligente de Inventarios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**StockWise** es una aplicación web desarrollada en React diseñada para facilitar el control y la administración de inventarios en pequeños negocios. Permite gestionar el catálogo de productos, registrar entradas y salidas de mercancía con validación de existencias y monitorear alertas de reposición en tiempo real.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Información Académica
 
-### `npm start`
+* **Asignatura:** Buenas Prácticas de Desarrollo de Software (BPDS) — Práctica de Desarrollo de Software
+* **Docente:** Kelly Villa
+* **Equipo de Desarrollo:**
+  * Bladimir Mieles
+  * Dana Villarreal
+  * Luisa Mejía
+  * Yordin Morris
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Módulos y Funcionalidades
 
-### `npm test`
+1. **Inicio y Navegación (`App.js`):** Interfaz principal de presentación de la plataforma y navegación dinámica entre vistas sin recarga de página.
+2. **Gestión de Productos (`Products`):** Formulario de registro y listado general con cálculo automático del estado de existencias (`Disponible`, `Stock bajo` y `Agotado`).
+3. **Movimientos de Inventario (`MovimientosInventario`):** Registro de **Entradas** y **Salidas** de inventario con validación de stock disponible, actualización automática de cantidades e historial de movimientos con fecha y motivo.
+4. **Dashboard y Alertas (`Dashboard`):** Panel de resumen con indicadores generales del negocio y alertas tempranas para productos agotados o con pocas unidades.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Arquitectura y Buenas Prácticas Aplicadas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **Estado Centralizado (*Lifting State Up*):** El estado compartido de `products` y `movimientos` se gestiona en `src/App.js` y se distribuye mediante *props*, garantizando sincronización inmediata entre módulos.
+* **Estructura Modular:** Organización del código fuente separada por responsabilidades en `src/Pages/`, `src/Components/`, `src/Styles/` y `src/Utils/`.
+* **Flujo de Trabajo Colaborativo en Git:** Desarrollo aislado por ramas de funcionalidad (`ftInventory`, `feature/*`), sincronización constante con la rama `prod` e integración mediante *Pull Requests* con revisión de código (*Code Review*) y mensajes bajo el estándar *Conventional Commits*.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tecnologías Utilizadas
 
-### `npm run eject`
+* **Frontend:** React, JavaScript (ES6+), HTML5, CSS3
+* **Control de Versiones:** Git & GitHub
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Instalación y Ejecución Local
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clona el repositorio:
+   ```bash
+   git clone [https://github.com/JnrMls/Proyecto-Saas.git](https://github.com/JnrMls/Proyecto-Saas.git)
