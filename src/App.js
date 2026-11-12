@@ -1,14 +1,5 @@
-feature/product-management
-
 import React from 'react';
 import Products from './Pages/Products';
-
-function App() {
-  return <Products />;
-}
-
-export default App;
-=======
 import './App.css'
 
 const features = [
@@ -50,7 +41,7 @@ function App() {
         </nav>
 
         <a href="#features" className="nav-button">
-          Comenzar 
+          Comenzar
         </a>
       </header>
 
@@ -58,7 +49,7 @@ function App() {
         <section className="hero" id="home">
           <div className="hero-content">
             <span className="eyebrow">
-               GESTIÓN INTELIGENTE DE INVENTARIOS
+              GESTIÓN INTELIGENTE DE INVENTARIOS
             </span>
 
             <h1>
@@ -199,7 +190,7 @@ function App() {
             Facilita la gestión de tus productos con StockWise.
           </p>
           <a href="#features" className="cta-button">
-            Conoce StockWise 
+            Conoce StockWise
           </a>
         </section>
       </main>
@@ -213,5 +204,5 @@ function App() {
   )
 }
 
-export default App  
- prod
+export default App
+
