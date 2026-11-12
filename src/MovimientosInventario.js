@@ -160,3 +160,49 @@ export default function MovimientosInventario({ productos = PRODUCTOS_INICIALES,
                     </button>
                 </form>
             </div>
+
+            {/* Historial de movimientos recientes */}
+            <div style={{ backgroundColor: '#1e1e1e', padding: '20px', borderRadius: '8px' }}>
+                <h3>Movimientos Recientes</h3>
+
+                {movimientos.length === 0 ? (
+                    <p>No hay movimientos registrados aún.</p>
+                ) : (
+                    <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                        <thead>
+                            <tr style={{ borderBottom: '1px solid #444' }}>
+                                <th style={{ padding: '10px' }}>Fecha</th>
+                                <th style={{ padding: '10px' }}>Producto</th>
+                                <th style={{ padding: '10px' }}>Tipo</th>
+                                <th style={{ padding: '10px' }}>Cantidad</th>
+                                <th style={{ padding: '10px' }}>Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {movimientos.map((mov) => (
+                                <tr key={mov.id} style={{ borderBottom: '1px solid #333' }}>
+                                    <td style={{ padding: '10px' }}>{mov.fecha}</td>
+                                    <td style={{ padding: '10px', fontWeight: 'bold' }}>{mov.productoNombre}</td>
+                                    <td style={{ padding: '10px' }}>
+                                        <span
+                                            style={{
+                                                padding: '4px 8px',
+                                                borderRadius: '4px',
+                                                backgroundColor: mov.tipo === 'Entrada' ? '#1b5e20' : '#b71c1c',
+                                                fontSize: '0.85em',
+                                            }}
+                                        >
+                                            {mov.tipo}
+                                        </span>
+                                    </td>
+                                    <td style={{ padding: '10px' }}>{mov.cantidad}</td>
+                                    <td style={{ padding: '10px', color: '#aaa' }}>{mov.motivo}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+            </div>
+        </div>
+    );
+}
