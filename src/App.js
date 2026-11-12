@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Products from './Pages/Products';
 import './App.css'
 
@@ -26,6 +26,7 @@ const features = [
 ]
 
 function App() {
+  const [vista, setVista] = useState('inicio');
   return (
     <div className="app">
       <header className="navbar">
@@ -35,16 +36,17 @@ function App() {
         </a>
 
         <nav className="nav-links" aria-label="Navegación principal">
-          <a href="#home">Inicio</a>
-          <a href="#features">Funcionalidades</a>
-          <a href="#how-it-works">¿Cómo funciona?</a>
+          <a href="#home" onClick={() => setVista('inicio')}>Inicio</a>
+          <a href="#features" onClick={() => setVista('inicio')}>Funcionalidades</a>
+          <a href="#how-it-works" onClick={() => setVista('inicio')}>¿Cómo funciona?</a>
+          <a href="#productos" onClick={(e) => { e.preventDefault(); setVista('productos'); }}>Productos</a>
         </nav>
 
         <a href="#features" className="nav-button">
           Comenzar
         </a>
       </header>
-
+      {vista === 'productos' ? <Products /> : (
       <main>
         <section className="hero" id="home">
           <div className="hero-content">
@@ -194,7 +196,7 @@ function App() {
           </a>
         </section>
       </main>
-
+      )}
       <footer className="footer">
         <span className="footer-brand">StockWise</span>
         <span>Gestión de inventarios para pequeños negocios.</span>
