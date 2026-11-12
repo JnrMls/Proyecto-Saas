@@ -51,7 +51,7 @@ export default function MovimientosInventario({
         // Registrar el movimiento en el historial
         const nuevoMovimiento = {
             id: Date.now(),
-            productoNombre: prodSeleccionado.nombre,
+            productoNombre: prodSeleccionado.name,
             tipo: tipoMovimiento,
             cantidad: cantidadNum,
             fecha: new Date().toLocaleString(),
