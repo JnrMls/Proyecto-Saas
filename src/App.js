@@ -49,7 +49,7 @@ function App() {
         <nav className="nav-links" aria-label="Navegación principal">
           <a href="#home" onClick={() => setVista('inicio')}>Inicio</a>
           <a href="#features" onClick={() => setVista('inicio')}>Funcionalidades</a>
-          <a href="#how-it-works" onClick={() => setVista('inicio')}>¿Cómo funciona?</a>
+          <a href="#planes" onClick={() => setVista('inicio')}>Planes y precios</a>
           <a href="#productos" onClick={(e) => { e.preventDefault(); setVista('productos'); }}>Productos</a>
           <a href="#movimientos" onClick={(e) => { e.preventDefault(); setVista('movimientos'); }}>Movimientos</a>
         </nav>
@@ -92,8 +92,8 @@ function App() {
                 Explorar funcionalidades
               </a>
 
-              <a href="#how-it-works" className="secondary-button">
-                ¿Cómo funciona?
+              <a href="#planes" className="secondary-button">
+                Ver planes
               </a>
             </div>
 
@@ -181,40 +181,71 @@ function App() {
           </div>
         </section>
 
-        <section className="how-section section" id="how-it-works">
+        <section className="pricing-section section" id="planes">
           <div className="section-heading">
-            <span className="section-label">¿CÓMO FUNCIONA?</span>
-            <h2>Organiza tu inventario en tres pasos.</h2>
+            <span className="section-label">PLANES STOCKWISE</span>
+            <h2>Elige el plan ideal para tu negocio.</h2>
+            <p>
+              Conoce nuestras opciones y encuentra la que mejor
+              se adapte a tus necesidades.
+            </p>
           </div>
 
-          <div className="steps-grid">
-            <div className="step">
-              <span>01</span>
-              <h3>Registra tus productos</h3>
-              <p>Agrega y organiza los productos de tu negocio.</p>
-            </div>
-            <div className="step">
-              <span>02</span>
-              <h3>Controla las existencias</h3>
-              <p>Consulta las unidades disponibles y los movimientos de inventario.</p>
-            </div>
-            <div className="step">
-              <span>03</span>
-              <h3>Mantente informado</h3>
-              <p>Identifica productos con pocas existencias y planifica su reposición.</p>
-            </div>
-          </div>
-        </section>
+          <div className="pricing-grid">
+            <article className="pricing-card">
+              <h3>Gratis</h3>
+              <div className="pricing-price">
+                <strong>$0</strong>
+                <span>COP / mes</span>
+              </div>
+              <p>Ideal para comenzar a organizar tu inventario.</p>
+              <ul>
+                <li>✓ Hasta 20 productos registrados</li>
+                <li>✓ Consulta de existencias</li>
+                <li>✓ Registro básico de productos</li>
+                <li>✓ Acceso para un usuario</li>
+              </ul>
+            </article>
+            <article className="pricing-card pricing-featured">
+              <span className="pricing-badge">Más popular</span>
+              <h3>Pro</h3>
+              <div className="pricing-price">
+                 <strong>$29.900</strong>
+                 <span>COP / mes</span>
+              </div>
+              <p>Para negocios que necesitan más control.</p>
+              <ul>
+                <li>✓ Todo lo incluido en Gratis</li>
+                <li>✓ Hasta 500 productos registrados</li>
+                <li>✓ Entradas y salidas de inventario</li>
+                <li>✓ Alertas de existencias bajas</li>
+                <li>✓ Historial de movimientos</li>
+                <li>✓ Acceso para hasta 3 usuarios</li>
+              </ul>
+            </article>
 
-        <section className="cta-section">
-          <span className="section-label">ORGANIZA TU NEGOCIO</span>
-          <h2>Toma el control de tu inventario.</h2>
-          <p>
-            Facilita la gestión de tus productos con StockWise.
+            <article className="pricing-card pricing-enterprise">
+              <span className="enterprise-badge">Premium</span>
+              <h3>Empresa</h3>
+              <div className="pricing-price">
+                 <strong>$59.900</strong>
+                 <span>COP / mes</span>
+              </div>
+              <p>Para negocios con operaciones más grandes.</p>
+              <ul>
+                  <li>✓ Todo lo incluido en Pro</li>
+                  <li>✓ Productos ilimitados</li>
+                  <li>✓ Usuarios ilimitados</li>
+                  <li>✓ Reportes avanzados de inventario</li>
+                  <li>✓ Gestión de múltiples sucursales</li>
+                  <li>✓ Soporte prioritario</li>
+              </ul>
+            </article>
+          </div>
+          <p className="pricing-disclaimer">
+            Planes ilustrativos. Consulta la disponibilidad
+            de las funcionalidades con nuestro equipo.
           </p>
-          <a href="#features" className="cta-button">
-            Conoce StockWise
-          </a>
         </section>
       </main>
       )}
