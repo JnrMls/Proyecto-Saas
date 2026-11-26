@@ -1,15 +1,10 @@
-import ProtectedRoute from '../auth/ProtectedRoute';
+
 import React, { useState } from 'react';
 import ProductForm from '../Components/Products/ProductForm';
 import ProductList from '../Components/Products/ProductList';
 import '../Styles/Products.css';
 
- feature/authentication-security
-function Products({ onLogout })  {
-  const [products, setProducts] = useState([]);
-=======
 function Products({ products, setProducts }) {
- prod
   const [showForm, setShowForm] = useState(false);
   const handleAddProduct = (newProduct) => {
     setProducts((currentProducts) => [
@@ -27,7 +22,6 @@ function Products({ products, setProducts }) {
   };
 
   return (
-  <ProtectedRoute>
     <main className="products-page">
       <div className="products-header">
         <div>
@@ -41,14 +35,6 @@ function Products({ products, setProducts }) {
         >
           + Agregar producto
         </button>
-
-        <button
-  type="button"
-  className="logout-button"
-  onClick={onLogout}
->
-  Cerrar sesión
-</button>
       </div>
 
       {showForm && (
@@ -63,8 +49,7 @@ function Products({ products, setProducts }) {
         onDeleteProduct={handleDeleteProduct}
       />
     </main>
-  </ProtectedRoute>
-);
+  );
 }
 
 export default Products;

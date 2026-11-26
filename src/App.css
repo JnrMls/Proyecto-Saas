@@ -63,8 +63,6 @@
   padding: 14px 22px;
   font-weight: 700;
   transition: 0.25s ease;
-  border: none;
-  cursor: pointer;  
 }
 
 .nav-button:hover,
