@@ -4,12 +4,8 @@ import ProductForm from '../Components/Products/ProductForm';
 import ProductList from '../Components/Products/ProductList';
 import '../Styles/Products.css';
 
- feature/authentication-security
-function Products({ onLogout })  {
+function Products({ onLogout }) {
   const [products, setProducts] = useState([]);
-=======
-function Products({ products, setProducts }) {
- prod
   const [showForm, setShowForm] = useState(false);
   const handleAddProduct = (newProduct) => {
     setProducts((currentProducts) => [
