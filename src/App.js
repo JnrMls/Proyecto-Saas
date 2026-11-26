@@ -353,7 +353,7 @@ useEffect(() => {
         </a>
       </section>
     </main>
-      )
+      )}
       <footer className="footer">
         <span className="footer-brand">StockWise</span>
         <span>Gestión de inventarios para pequeños negocios.</span>
