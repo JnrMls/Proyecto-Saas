@@ -5,7 +5,6 @@ import Products from './Pages/Products';
 import PasswordAccess from './Pages/PasswordAccess';
 import './App.css'
 
-
 const CODIGO_ACCESO = 'stockwise2026'
 
 const features = [
@@ -32,8 +31,6 @@ const features = [
 ]
 
 function App() {
-
-
   const [vista, setVista] = useState('inicio');
 
   // Estado compartido entre Productos, Movimientos y el futuro Dashboard
@@ -59,7 +56,6 @@ useEffect(() => {
   localStorage.setItem('stockwise_movimientos', JSON.stringify(movimientos));
 }, [movimientos]);
   
-
   return (
     <div className="app">
       <header className="navbar">
@@ -79,64 +75,66 @@ useEffect(() => {
               <a href="#planes">Planes y precios</a>
             </nav>
 
+        <a
+          href="#acceso"
+          className="nav-button"
+          onClick={(e) => {
+            e.preventDefault();
+            setVista('acceso');
+          }}
+        >
+          Comenzar
+        </a>
+      </>
+      ) : vista === 'acceso' ? null : (
+        <>
+          <nav className="nav-links" aria-label="Navegación del inventario">
             <a
-              href="#acceso"
-              className="nav-button"
+              href="#dashboard"
+              className={vista === 'dashboard' ? 'active' : ''}
+              aria-current={vista === 'dashboard' ? 'page' : undefined}
               onClick={(e) => {
                 e.preventDefault();
-                setVista('acceso');
+                setVista('dashboard');
               }}
             >
-              Comenzar
+              Dashboard
             </a>
-          </>
-        ) : vista === 'acceso' ? null : (
-          <>
-            <nav className="nav-links" aria-label="Navegación del inventario">
-              <a
-                href="#dashboard"
-                className={vista === 'dashboard' ? 'active' : ''}
-                aria-current={vista === 'dashboard' ? 'page' : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setVista('dashboard');
-                }}
-              >
-                Dashboard
-              </a>
-              <a
-                href="#productos"
-                className={vista === 'productos' ? 'active' : ''}
-                aria-current={vista === 'productos' ? 'page' : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setVista('productos');
-                }}
-              >
-                Productos
-              </a>
-              <a
-                href="#movimientos"
-                className={vista === 'movimientos' ? 'active' : ''}
-                aria-current={vista === 'movimientos' ? 'page' : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setVista('movimientos');
-                }}
-              >
-                Movimientos
-              </a>
-            </nav>
             <a
-              href="#home"
-              className="nav-button"
-              onClick={() => setVista('inicio')}
+              href="#productos"
+              className={vista === 'productos' ? 'active' : ''}
+              aria-current={vista === 'productos' ? 'page' : undefined}
+              onClick={(e) => {
+                e.preventDefault();
+                setVista('productos');
+              }}
             >
-              Volver al inicio
+              Productos
             </a>
-          </>
-        )}
-      </header>
+            <a
+              href="#movimientos"
+              className={vista === 'movimientos' ? 'active' : ''}
+              aria-current={vista === 'movimientos' ? 'page' : undefined}
+              onClick={(e) => {
+                e.preventDefault();
+                setVista('movimientos');
+              }}
+            >
+              Movimientos
+            </a>
+          </nav>
+           <a
+            href="#home"
+            className="nav-button"
+            onClick={() => setVista('inicio')}
+          >
+            Volver al inicio
+          </a>
+        </>
+      )}
+    </header>
+    
+      {vista === 'acceso' ? (
         <PasswordAccess
           onAccess={(passwordIngresada) => {
             if (passwordIngresada.trim() === CODIGO_ACCESO) {
@@ -159,7 +157,6 @@ useEffect(() => {
       ) : vista === 'dashboard' ? (
         <Dashboard products={products} movimientos={movimientos} />
       ) : (
-
       <main>
         <section className="hero" id="home">
           <div className="hero-content">
