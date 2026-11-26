@@ -1,9 +1,21 @@
+feature/authentication-security
+
+import './App.css'
+
+import React, { useState } from 'react';
+import Login from './Pages/Login';
+import Products from './Pages/Products';
+import { login, isSessionActive, closeSession } from './auth/auth';
+
+const CORRECT_PASSWORD = 'stockwise2026';
+=======
 import MovimientosInventario from './Pages/MovimientosInventario';
 import Dashboard from './Pages/Dashboard';
 import React, { useState, useEffect } from 'react';
 import Products from './Pages/Products';
 import PasswordAccess from './Pages/PasswordAccess';
 import './App.css'
+ prod
 
 const CODIGO_ACCESO = 'stockwise2026'
 
@@ -31,6 +43,40 @@ const features = [
 ]
 
 function App() {
+ feature/authentication-security
+  const [view, setView] = useState(
+    isSessionActive() ? 'products' : 'home'
+  );
+
+  const handleLogin = (password) => {
+    const success = login(password, CORRECT_PASSWORD);
+
+    if (success) {
+      setView('products');
+    }
+
+    return success;
+  };
+
+  const handleLogout = () => {
+    closeSession();
+    setView('home');
+  };
+
+  if (view === 'login') {
+    return (
+      <Login
+        onLogin={handleLogin}
+        onBack={() => setView('home')}
+      />
+    );
+  }
+
+  if (view === 'products') {
+    return <Products onLogout={handleLogout} />;
+  }
+
+
   const [vista, setVista] = useState('inicio');
 
   // Estado compartido entre Productos, Movimientos y el futuro Dashboard
@@ -56,6 +102,7 @@ useEffect(() => {
   localStorage.setItem('stockwise_movimientos', JSON.stringify(movimientos));
 }, [movimientos]);
   
+ prod
   return (
     <div className="app">
       <header className="navbar">
@@ -74,6 +121,23 @@ useEffect(() => {
             <a href="#features">Funcionalidades</a>
             <a href="#planes">Planes y precios</a>
           </nav>
+
+feature/authentication-security
+        <nav className="nav-links" aria-label="Navegación principal">
+          <a href="#home">Inicio</a>
+          <a href="#features">Funcionalidades</a>
+          <a href="#how-it-works">¿Cómo funciona?</a>
+        </nav>
+
+        <button
+  type="button"
+  className="nav-button"
+  onClick={() => setView('login')}
+>
+  Comenzar
+</button>
+      </header>
+
 
         <a
           href="#acceso"
@@ -157,6 +221,7 @@ useEffect(() => {
       ) : vista === 'dashboard' ? (
         <Dashboard products={products} movimientos={movimientos} />
       ) : (
+prod
       <main>
         <section className="hero" id="home">
           <div className="hero-content">
@@ -363,5 +428,10 @@ useEffect(() => {
   )
 }
 
+ feature/authentication-security
+export default App  
+ 
+=======
 export default App
 
+ prod

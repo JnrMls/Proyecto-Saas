@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders StockWise landing page', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(screen.getAllByText('StockWise')).toHaveLength(2);
+  expect(
+  screen.getByRole('heading', { level: 1, name: /Tu inventario/i })
+).toBeInTheDocument();
 });
