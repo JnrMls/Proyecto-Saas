@@ -65,3 +65,21 @@ export function resumenMovimientos(movimientos) {
     return acc;
   }, base);
 }
+
+/** Valida un producto nuevo. Devuelve un mensaje de error, o "" si es válido. */
+export function validarProducto({ name, category, quantity, price }) {
+  if (!String(name || "").trim()) return "El nombre del producto es obligatorio.";
+  if (!String(category || "").trim()) return "La categoría es obligatoria.";
+
+  const cantidad = Number(quantity);
+  if (quantity === "" || !Number.isInteger(cantidad) || cantidad < 0) {
+    return "La cantidad debe ser un número entero mayor o igual a 0.";
+  }
+
+  const precio = Number(price);
+  if (price === "" || Number.isNaN(precio) || precio <= 0) {
+    return "El precio debe ser un número mayor que 0.";
+  }
+
+  return "";
+}

@@ -68,7 +68,9 @@ export default function MovimientosInventario({
 
     return (
         <div style={{ padding: '20px', fontFamily: 'sans-serif', color: '#fff' }}>
-            <h2> Gestión de Movimientos de Inventario</h2>
+            <h2 style={{ color: '#173d2c' }}>
+                Gestión de Movimientos de Inventario
+            </h2>
 
             {/* Formulario de registro de movimiento */}
             <div style={{ backgroundColor: '#1e1e1e', padding: '20px', borderRadius: '8px', marginBottom: '30px' }}>

@@ -1,8 +1,11 @@
 import MovimientosInventario from './Pages/MovimientosInventario';
 import Dashboard from './Pages/Dashboard';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Products from './Pages/Products';
+import PasswordAccess from './Pages/PasswordAccess';
 import './App.css'
+
+const CODIGO_ACCESO = 'stockwise2026'
 
 const features = [
   {
@@ -31,36 +34,118 @@ function App() {
   const [vista, setVista] = useState('inicio');
 
   // Estado compartido entre Productos, Movimientos y el futuro Dashboard
-  const [products, setProducts] = useState([
+  const [products, setProducts] = useState(() => {
+  const guardados = localStorage.getItem('stockwise_products');
+  return guardados ? JSON.parse(guardados) : [
     { id: 1, name: 'Arroz', category: 'Alimentos', quantity: 25, price: 4000 },
     { id: 2, name: 'Teclado Mecánico', category: 'Tecnología', quantity: 15, price: 120000 },
     { id: 3, name: 'Mouse Inalámbrico', category: 'Tecnología', quantity: 4, price: 55000 },
-  ]);
+  ];
+});
 
-  const [movimientos, setMovimientos] = useState([]);
+const [movimientos, setMovimientos] = useState(() => {
+  const guardados = localStorage.getItem('stockwise_movimientos');
+  return guardados ? JSON.parse(guardados) : [];
+});
+
+useEffect(() => {
+  localStorage.setItem('stockwise_products', JSON.stringify(products));
+}, [products]);
+
+useEffect(() => {
+  localStorage.setItem('stockwise_movimientos', JSON.stringify(movimientos));
+}, [movimientos]);
   
   return (
     <div className="app">
       <header className="navbar">
-        <a href="#home" className="brand">
+        <a
+          href="#home"
+          className="brand"
+          onClick={() => setVista('inicio')}
+        >
           <span className="brand-icon">S</span>
           StockWise
         </a>
+        {vista === 'inicio' ? (
+          <>
+            <nav className="nav-links" aria-label="Navegación principal">
+              <a href="#home">Inicio</a>
+              <a href="#features">Funcionalidades</a>
+              <a href="#planes">Planes y precios</a>
+            </nav>
 
-        <nav className="nav-links" aria-label="Navegación principal">
-          <a href="#home" onClick={() => setVista('inicio')}>Inicio</a>
-          <a href="#features" onClick={() => setVista('inicio')}>Funcionalidades</a>
-          <a href="#planes" onClick={() => setVista('inicio')}>Planes y precios</a>
-          <a href="#productos" onClick={(e) => { e.preventDefault(); setVista('productos'); }}>Productos</a>
-          <a href="#movimientos" onClick={(e) => { e.preventDefault(); setVista('movimientos'); }}>Movimientos</a>
-          <a href="#dashboard" onClick={(e) => { e.preventDefault(); setVista('dashboard'); }}>Dashboard</a>
-        </nav>
-
-        <a href="#features" className="nav-button">
+        <a
+          href="#acceso"
+          className="nav-button"
+          onClick={(e) => {
+            e.preventDefault();
+            setVista('acceso');
+          }}
+        >
           Comenzar
         </a>
-      </header>
-      {vista === 'productos' ? (
+      </>
+      ) : vista === 'acceso' ? null : (
+        <>
+          <nav className="nav-links" aria-label="Navegación del inventario">
+            <a
+              href="#dashboard"
+              className={vista === 'dashboard' ? 'active' : ''}
+              aria-current={vista === 'dashboard' ? 'page' : undefined}
+              onClick={(e) => {
+                e.preventDefault();
+                setVista('dashboard');
+              }}
+            >
+              Dashboard
+            </a>
+            <a
+              href="#productos"
+              className={vista === 'productos' ? 'active' : ''}
+              aria-current={vista === 'productos' ? 'page' : undefined}
+              onClick={(e) => {
+                e.preventDefault();
+                setVista('productos');
+              }}
+            >
+              Productos
+            </a>
+            <a
+              href="#movimientos"
+              className={vista === 'movimientos' ? 'active' : ''}
+              aria-current={vista === 'movimientos' ? 'page' : undefined}
+              onClick={(e) => {
+                e.preventDefault();
+                setVista('movimientos');
+              }}
+            >
+              Movimientos
+            </a>
+          </nav>
+           <a
+            href="#home"
+            className="nav-button"
+            onClick={() => setVista('inicio')}
+          >
+            Volver al inicio
+          </a>
+        </>
+      )}
+    </header>
+    
+      {vista === 'acceso' ? (
+        <PasswordAccess
+          onAccess={(passwordIngresada) => {
+            if (passwordIngresada.trim() === CODIGO_ACCESO) {
+              setVista('dashboard');
+            } else {
+              alert('Contraseña incorrecta. Intenta nuevamente.');
+            }
+          }}
+          onBack={() => setVista('inicio')}
+        />
+      ) : vista === 'productos' ? (
         <Products products={products} setProducts={setProducts} />
       ) : vista === 'movimientos' ? (
         <MovimientosInventario

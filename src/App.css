@@ -49,6 +49,12 @@
   color: #087f5b;
 }
 
+.nav-links a.active {
+  color: #087f5b;
+  background-color: #e6f4ed;
+  border-radius: 8px;
+  box-shadow: 0 0 0 7px #e6f4ed;
+}
 .nav-button,
 .primary-button {
   background: #087f5b;
